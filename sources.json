@@ -147,7 +147,7 @@
     },
     "second-opinion": {
       "status": "local",
-      "note": "Output path follows repo guidance. Explicit invocation only."
+      "note": "Output path follows repo guidance; replies with the path. Explicit invocation only."
     },
     "setup-matt-pocock-skills": {
       "status": "pristine",

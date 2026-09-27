@@ -31,7 +31,7 @@ Produce a concise but sufficiently detailed handoff that stands on its own.
 
 Prefer clear headings and bullets when they make the context easier to scan.
 
-Save it as a Markdown file where the repository's agent guidance puts scratch or handoff documents; if it names none, use `.scratch/handoffs/`.
+Save it as a Markdown file where the repository's agent guidance puts scratch or handoff documents; if it names none, use `.scratch/handoffs/`. Reply with the file's path, and say so when git would track it.
 
 ## Final Check
 
@@ -41,5 +41,3 @@ Before responding, verify that:
 - the central question is explicit;
 - relevant constraints and tradeoffs are preserved;
 - no important context needed for a second opinion has been omitted.
-
-Explicit user instructions take precedence over this skill.

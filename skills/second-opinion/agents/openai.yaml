@@ -1,2 +1,5 @@
+interface:
+  display_name: "Second Opinion"
+  short_description: "Package a discussion for a second opinion"
 policy:
   allow_implicit_invocation: false
