@@ -9,7 +9,8 @@ The standard for new .NET projects and the yardstick for improving existing ones
 
 ## Precedence
 
-- A repository's own guides and ADRs override this skill. Read the guidance its `AGENTS.md` points to first.
+- A repository's own guides and ADRs override this skill. Read the guidance its `AGENTS.md` points to first; a deviation listed there is settled, not a gap.
+- Named libraries and providers are defaults for new projects. An established equivalent in an existing repository is not a gap.
 - In an existing repository, established code wins over this skill for the change at hand. Where the repository falls short of a convention here, finish the task in the local style and report the gap as a suggested improvement rather than rewriting unrelated code.
 - `Prefer` is the normal default; a justified alternative may fit better. `Avoid` marks a usually harmful choice. `Do not` is a correctness, security, interoperability, or architectural guardrail. `Must` is required to satisfy a contract.
 

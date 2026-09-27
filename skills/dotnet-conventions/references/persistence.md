@@ -14,7 +14,7 @@ Raw SQL is for requirements LINQ cannot express safely, such as `FOR UPDATE`, `S
 
 ## Saving and transactions
 
-The use case owns the consistency boundary. Make the related changes, dependent records, and outbox messages, then call `SaveChangesAsync()` once near the end; the provider wraps that single save in a transaction. Repositories never save or commit on their own.
+The use case owns the consistency boundary. Make the related changes, dependent records, and outbox messages, then call `SaveChangesAsync()` once near the end; the provider wraps that single save in a transaction. Repositories never save or commit on their own. When a durable messaging framework such as Wolverine or MassTransit owns the transaction and outbox, follow its unit-of-work and outbox model instead of hand-rolling one.
 
 Add an explicit transaction only for multiple atomic save phases, mixed EF and direct SQL, a specific isolation level, or another defined atomic workflow. Keep it short and free of HTTP calls, file storage, or other external I/O; when resources cannot share a transaction, use an outbox, idempotency, durable retry, or reconciliation.
 
@@ -28,11 +28,11 @@ Add optimistic concurrency where concurrent updates could lose meaningful data, 
 
 ## Mapping
 
-Map each entity in a dedicated `IEntityTypeConfiguration<T>` under `Infrastructure`, and keep `OnModelCreating` to applying configurations and cross-cutting conventions. Use the Fluent API rather than persistence attributes on domain types. Map single-value domain types with value converters. Give every `decimal` column explicit precision and scale. Choose one table and column naming convention for the whole database and apply it globally.
+Map each entity in a dedicated `IEntityTypeConfiguration<T>` beside its `DbContext`, and keep `OnModelCreating` to applying configurations and cross-cutting conventions. Use the Fluent API rather than persistence attributes on domain types. Map single-value domain types with value converters. Give every `decimal` column explicit precision and scale. Choose one table and column naming convention for the whole database and apply it globally.
 
 ## Migrations
 
-Generate migrations from model changes and commit each with the model snapshot. Review them as deployment artifacts: `Up()`, `Down()`, and the generated SQL for destructive changes, renames, required columns, defaults and backfills, constraints, indexes, and locking.
+Generate migrations from model changes and commit each with the model snapshot. Several contexts sharing one database each keep their migrations in their own assembly or folder and set a distinct `MigrationsHistoryTable`. Review them as deployment artifacts: `Up()`, `Down()`, and the generated SQL for destructive changes, renames, required columns, defaults and backfills, constraints, indexes, and locking.
 
 Edit `Up()`/`Down()` of a migration that has not been applied anywhere when EF cannot infer the intent: a data backfill, a rename scaffolded as drop-and-add, or provider-specific SQL. The designer file and model snapshot stay generated. Correct a deployed migration with a new one; to redo an unapplied one, `migrations remove`, fix the model, and scaffold again.
 

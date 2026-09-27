@@ -18,16 +18,19 @@ FastEndpoints base classes offer convenience members that bypass conventions els
 
 Pass the `HandleAsync` cancellation token to every cancellable call. Send responses through `Send.*`, and expected-error results through `await Send.ResultAsync(errors.ToProblem(HttpContext))`.
 
-A small slice in one file, `Features/Foos/CreateFoo.cs`:
+A slice in `Features/Foos/CreateFoo/`, one file per type:
 
 ```csharp
+// CreateFooRequest.cs
 internal sealed record CreateFooRequest
 {
     public string? Code { get; init; }
 }
 
+// CreateFooResponse.cs
 internal sealed record CreateFooResponse(Guid Id);
 
+// CreateFooValidator.cs
 internal sealed class CreateFooValidator : Validator<CreateFooRequest>
 {
     public CreateFooValidator()
@@ -36,6 +39,7 @@ internal sealed class CreateFooValidator : Validator<CreateFooRequest>
     }
 }
 
+// CreateFooEndpoint.cs
 internal sealed class CreateFooEndpoint : Endpoint<CreateFooRequest, CreateFooResponse>
 {
     private readonly AppDbContext _db;
@@ -75,11 +79,11 @@ internal sealed class CreateFooEndpoint : Endpoint<CreateFooRequest, CreateFooRe
 
 ## Validators
 
-`Validator<TRequest>` instances are singletons: inject only singleton-safe dependencies, keep them to transport rules, and never `Resolve<T>()` scoped services. Give every rule a stable code with `WithErrorCode`. Request validation failures are the one place the framework's own error flow is used: it short-circuits to `400` before `HandleAsync`, in the shared error format.
+`Validator<TRequest>` instances are singletons: inject only singleton-safe dependencies, keep them to transport rules, and never `Resolve<T>()` scoped services. Give every rule a stable code with `WithErrorCode`. Request validation failures are the one place the framework's own error flow is used: it short-circuits before `HandleAsync` with the [validation status](http.md#error-responses), in the shared error format.
 
 ## Configuration
 
-- Configure error responses so validation failures emit the shared format with each error's `code` and the RFC 9110 `type` and `title` (FastEndpoints defaults to an RFC 7231 link and "Bad Request"; `TypeValue`/`TitleValue` do not override them, the transformers do):
+- For the default error format, configure error responses so validation failures emit it with each error's `code` and the RFC 9110 `type` and `title` (FastEndpoints defaults to an RFC 7231 link and "Bad Request"; `TypeValue`/`TitleValue` do not override them, the transformers do):
 
   ```csharp
   app.UseFastEndpoints(c => c.Errors.UseProblemDetails(p =>

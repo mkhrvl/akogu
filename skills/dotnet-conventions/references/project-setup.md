@@ -252,8 +252,8 @@ public sealed class MigrationWorker : BackgroundService
 }
 ```
 
-Its `Program.cs` registers the context through the Aspire client integration (for example `builder.AddSqlServerDbContext<AppDbContext>("app")`) and the worker. Production does not run the MigrationService: generate a reviewed idempotent script with `dotnet ef migrations script --idempotent` and apply it in a controlled deployment step.
+Its `Program.cs` registers the context through the Aspire client integration (for example `builder.AddSqlServerDbContext<AppDbContext>("app")`) and the worker. With several contexts, the worker migrates each in turn, typically through one migrator per module resolved from DI. Production does not run the MigrationService: generate a reviewed idempotent script with `dotnet ef migrations script --idempotent` and apply it in a controlled deployment step.
 
 ## Repository guidance
 
-Create `AGENTS.md` with a pointer to this skill for C# work, copy the skill into `.agents/skills/` so every agent working in the repository has it, and record only project-specific decisions and deviations in `docs/guides/` and ADRs.
+Create `AGENTS.md` with a pointer to this skill for C# work, copy the skill into `.agents/skills/` so every agent working in the repository has it, and record only project-specific decisions in `docs/guides/` and ADRs. List each deliberate deviation from this skill in the guide `AGENTS.md` points to, citing its ADR, so agents treat it as settled.

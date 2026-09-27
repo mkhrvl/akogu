@@ -2,15 +2,15 @@
 
 ## Vertical slices
 
-Organize application code by vertical slice: keep an operation's endpoint or handler, contracts, validation, mapping, and operation-specific collaborators together under `Features/<Area>/<Operation>`. Larger areas may group related operations under `Features/<Area>/<Capability>/<Operation>`. Give shared domain, infrastructure, and cross-cutting concerns their own roots (`Domain`, `Infrastructure`) only when they serve several features. Add subfolders when they make related work easier to find and new files easier to place; file count alone does not justify nesting, and roots need not mirror each other's trees.
+Organize application code by vertical slice: keep an operation's endpoint or handler, contracts, validation, mapping, and operation-specific collaborators together under `Features/<Area>/<Operation>`. Larger areas may group related operations under `Features/<Area>/<Capability>/<Operation>`; in a [modular solution](#modular-solutions) the module is the area. Give shared domain, infrastructure, and cross-cutting concerns their own roots (`Domain`, `Infrastructure`) only when they serve several features. Add subfolders when they make related work easier to find and new files easier to place; file count alone does not justify nesting, and roots need not mirror each other's trees.
 
-Name operation folders and types with verbs: `Create` for a new independently identifiable entity, `Update` for ordinary maintenance, a precise verb for a state transition (`Approve`, `Deactivate`), and `Add` only for a member or association. Keep each lifecycle transition its own slice even when one screen presents them together.
+Name operation folders and types with verbs: `Create` for a new independently identifiable entity, `Update` for ordinary maintenance, a precise verb for a state transition (`Approve`, `Deactivate`), and `Add` only for a member or association. Integration and messaging slices name the flow and its direction instead: `Send` for a caller-initiated request passed on to another system, `Receive` for an inbound callback, `Deliver` for background fulfillment of persisted work. Keep each lifecycle transition its own slice even when one screen presents them together.
 
 Keep Commands, Queries, Results, and HTTP contracts with their owning operation. Collect nothing into generic `Application`, `Contracts`, `Services`, or `Helpers` roots; within a feature, group helpers by responsibility (`Reporting`, `ExpiryReminders`). A `Services` folder needs a precise membership rule beyond "classes that do work".
 
 ## Slice files
 
-A small operation lives in one file named after the operation, such as `Features/Foos/CreateFoo.cs` holding its request, validator, response, and endpoint (or command, validator, result, and handler), while the whole file fits on about one screen (~100 lines). As soon as it outgrows that, or code outside the file references one of its types, split every type at once into a `Features/Foos/CreateFoo/` folder with one same-named file per type. A slice is either one file or fully split, never partly.
+Each operation is a folder, such as `Features/Foos/CreateFoo/`, holding one same-named file per type: `CreateFooEndpoint.cs`, `CreateFooRequest.cs`, `CreateFooValidator.cs`, `CreateFooResponse.cs` (or the command, validator, result, and handler). Types that [share a file](csharp.md#types-and-visibility) by exception stay with their primary type.
 
 ## Endpoints as handlers
 
@@ -80,4 +80,8 @@ Shape a port around the capability its callers need, not around the adapter clas
 
 `Features` do not depend on `Infrastructure`; `Infrastructure` depends on `Features` to implement their ports and owns their registration. `Domain` depends on nothing application-specific.
 
-The EF Core `DbContext` is the one named exception: it lives in `Infrastructure/Data` with its configurations and migrations, and features use it directly as their persistence interface. Provider-specific APIs, raw SQL, direct connections, and provider exception interpretation stay in `Infrastructure` behind a port. Enforce these rules, including the `DbContext` exception, with architecture tests.
+The EF Core `DbContext` is the one named exception: it lives with its configurations and migrations in `Infrastructure/Data` or a top-level `Data` root, and features use it directly as their persistence interface. Provider-specific APIs, raw SQL, direct connections, and provider exception interpretation stay in `Infrastructure` behind a port. Enforce these rules, including the `DbContext` exception, with architecture tests.
+
+## Modular solutions
+
+A modular solution splits the application into module projects, each owning one external system or business boundary, composed by a host. The module supplies the area, so slices sit directly at `Features/<Operation>` inside each module. Each module owns its `DbContext` in its own `Data` root, with migrations kept per module as in [persistence](persistence.md#migrations), and features use only their own module's context. Architecture tests enforce the dependency rules per module, using the module's `Data` namespace as the persistence boundary. With FastEndpoints, compose modules explicitly as in [FastEndpoints](fastendpoints.md#configuration).

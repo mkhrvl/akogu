@@ -12,7 +12,7 @@ Require authentication by default through a fallback authorization policy. Publi
 
 ## Error responses
 
-Every error response, whether from a validator, a mapped `ErrorOr` result, or an unhandled exception, is RFC 9457 Problem Details (`application/problem+json`) with `traceId` and an `errors` array as extension members. Each `errors` entry carries `name` (the field, or `generalErrors` for errors not tied to a field), `reason` (human-readable), and a stable `code` that clients react to instead of parsing messages or depending on property names. `detail` repeats the reason when there is exactly one error:
+Every error response, whether from a validator, a mapped `ErrorOr` result, or an unhandled exception, is RFC 9457 Problem Details (`application/problem+json`), and every expected error in it carries a stable code. The format below is the default for a new API; an established API whose Problem Details already carry those codes keeps its own layout. The default adds `traceId` and an `errors` array as extension members. Each `errors` entry carries `name` (the field, or `generalErrors` for errors not tied to a field), `reason` (human-readable), and a stable `code` that clients react to instead of parsing messages or depending on property names. `detail` repeats the reason when there is exactly one error:
 
 ```json
 {
@@ -58,6 +58,8 @@ One shared `ToProblem(HttpContext)` extension maps `ErrorOr` errors to this cont
 | `Unexpected` and anything else | `500` | `#section-15.6.1` | Internal Server Error |
 
 Each `type` is `https://www.rfc-editor.org/rfc/rfc9110` plus the section anchor.
+
+Validator failures and `Validation` results return the same status. `400` is the default. `422` (`#section-15.5.21`, Unprocessable Content) is an accepted variant that separates a body that cannot be read (binding, `400`) from readable but invalid content (`422`); it applies to both paths, which FastEndpoints configures with `c.Errors.StatusCode = StatusCodes.Status422UnprocessableEntity`. An externally dictated contract, such as an OAuth token endpoint (RFC 6749) or a vendor's callback specification, keeps the statuses it defines.
 
 Declare the contract as the error response schema in OpenAPI and document any non-obvious client-visible mapping. Item-level outcomes within a batch stay in a successful response body.
 

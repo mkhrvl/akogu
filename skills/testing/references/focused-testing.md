@@ -11,7 +11,7 @@ Choose scope based on test cost and execution overhead.
 - integration tests: affected class or classes
 - E2E tests: only when explicitly requested, required by repository policy, or narrower tests cannot validate behavior across deployable boundaries
 
-Use narrower unit-test filtering during tight red/green loops.
+Use narrower unit-test filtering during tight red/green loops. Repository policy may narrow these scopes, for example leaving whole-project runs to CI.
 
 If integration tests can prove the behavior, skip E2E.
 

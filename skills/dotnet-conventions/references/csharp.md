@@ -6,7 +6,7 @@ Formatting and mechanically enforceable style belong to CSharpier, `.editorconfi
 
 Declare classes and record classes `internal sealed` by default; other type kinds (interfaces, enums, structs, static classes) default to `internal`. Make a type `public` only when another assembly consumes it or a framework requires it, and leave a class unsealed only when it is designed for inheritance. xUnit test classes are the common case: they must be `public` (analyzer xUnit1000), so declare them `public sealed`. Test projects reach internal types through `<InternalsVisibleTo Include="<Name>.Tests.Unit" />` (and the other test assemblies) in the production project file.
 
-Give each top-level type its own file named after the type. Exceptions: a small operation slice in one operation-named file (see [slice files](architecture.md#slice-files)), tightly coupled immutable records forming one snapshot, and request subtypes used only by their primary request.
+Give each top-level type its own file named after the type. Exceptions: tightly coupled immutable records forming one snapshot, and request subtypes used only by their primary request.
 
 ## Constructors and dependencies
 
