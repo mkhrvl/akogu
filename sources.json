@@ -67,6 +67,10 @@
         "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
       }
     },
+    "dotnet-conventions": {
+      "status": "local",
+      "note": "Merged from the C#/.NET guides of client-endorsement-system-rewrite and myhealth-integration-layer; baseline for new .NET projects."
+    },
     "git-commit": {
       "status": "modified",
       "upstream": {

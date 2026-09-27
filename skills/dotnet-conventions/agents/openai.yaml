@@ -1,0 +1,7 @@
+interface:
+  display_name: ".NET conventions"
+  short_description: "C# and .NET conventions for new and existing projects"
+  default_prompt: "Apply the .NET conventions to this C# work, reading every reference whose trigger matches, and report where the repository falls short of them."
+
+policy:
+  allow_implicit_invocation: true
