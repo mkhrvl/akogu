@@ -9,7 +9,7 @@
 #
 # Options (before the mode):
 #   --model sol|luna   sol = gpt-5.6-sol (default), luna = gpt-6-luna for trivial tasks
-#   --effort <level>   sol: low|medium|high (default medium); luna: high|xhigh (default high)
+#   --effort <level>   sol: medium|high (default high for review, else medium); luna: high|xhigh (default high)
 #
 # Run from the repository root (except resume).
 # Prints the run directory, session id, worktree path (write mode) and Codex's final message.
@@ -26,15 +26,18 @@ while [[ ${1:-} == --* ]]; do
     *) usage ;;
   esac
 done
+[[ $# -ge 2 ]] || usage
+mode=$1; shift
+
 case $tier in
-  sol)  model=gpt-5.6-sol; effort=${effort:-medium}; allowed="low medium high" ;;
-  luna) model=gpt-6-luna;  effort=${effort:-high};   allowed="high xhigh" ;;
+  sol)
+    model=gpt-5.6-sol; allowed="medium high"
+    [[ $mode == review ]] && effort=${effort:-high} || effort=${effort:-medium} ;;
+  luna) model=gpt-6-luna; effort=${effort:-high}; allowed="high xhigh" ;;
   *) echo "model must be sol or luna, got: $tier" >&2; exit 2 ;;
 esac
 [[ " $allowed " == *" $effort "* ]] || { echo "effort for $tier must be one of: $allowed (got: $effort)" >&2; exit 2; }
-[[ $# -ge 2 ]] || usage
 
-mode=$1; shift
 session=""
 if [[ $mode == resume ]]; then
   session=$1; shift
