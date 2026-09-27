@@ -1,0 +1,7 @@
+interface:
+  display_name: "Testing"
+  short_description: "Repository-aware test design and focused validation"
+  default_prompt: "Follow this repository's testing conventions, add or update tests as needed, and validate the requested change by running cheap suites broadly while focusing expensive tests on affected seams."
+
+policy:
+  allow_implicit_invocation: true

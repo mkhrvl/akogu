@@ -1,0 +1,211 @@
+{
+  "skills": {
+    "analyzing-dotnet-performance": {
+      "status": "diverged",
+      "upstream": {
+        "repo": "https://github.com/dotnet/skills.git",
+        "path": "plugins/dotnet-diag/skills/analyzing-dotnet-performance",
+        "commit": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d"
+      },
+      "note": "Differs from the recorded commit; not checked whether local or upstream changed."
+    },
+    "aspire": {
+      "status": "local",
+      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+    },
+    "aspire-deployment": {
+      "status": "local",
+      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+    },
+    "aspire-init": {
+      "status": "local",
+      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+    },
+    "aspire-monitoring": {
+      "status": "local",
+      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+    },
+    "aspire-orchestration": {
+      "status": "modified",
+      "note": "Microsoft Aspire skill; install origin not recorded. Leaves the host running after a task unless shutdown is requested (promoted from project copies)."
+    },
+    "aspireify": {
+      "status": "local",
+      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+    },
+    "code-review": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/code-review",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      },
+      "note": "Rewritten to be tracker- and stack-agnostic; promoted from project copies."
+    },
+    "codebase-design": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/codebase-design",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "diagnosing-bugs": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/diagnosing-bugs",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      },
+      "note": "Rewritten to scale phases to the evidence; promoted from project copies. Upstream Redact section applied at the recorded commit."
+    },
+    "domain-modeling": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/domain-modeling",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "git-commit": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/github/awesome-copilot.git",
+        "path": "skills/git-commit",
+        "commit": "6c4d33b9cfca967a28bb2962ef4d55e4a384c88c"
+      },
+      "note": "Description shortened."
+    },
+    "grill-with-docs": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/grill-with-docs",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "grilling": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/productivity/grilling",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "handoff": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/productivity/handoff",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "implement": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/implement",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      },
+      "note": "Delegates to testing and code-review; leaves changes uncommitted; promoted from project copies. Explicit invocation only."
+    },
+    "improve-codebase-architecture": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/improve-codebase-architecture",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "maintain-codex-config": {
+      "status": "local"
+    },
+    "prototype": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/prototype",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      },
+      "note": "Kept because wayfinder calls it for Prototype tickets."
+    },
+    "research": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/research",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "resolving-merge-conflicts": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/resolving-merge-conflicts",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "second-opinion": {
+      "status": "local",
+      "note": "Output path follows repo guidance. Explicit invocation only."
+    },
+    "setup-matt-pocock-skills": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/setup-matt-pocock-skills",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "testing": {
+      "status": "local"
+    },
+    "thermo-nuclear-code-quality-review": {
+      "status": "local",
+      "note": "Explicit invocation only."
+    },
+    "to-spec": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/to-spec",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "to-tickets": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/to-tickets",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "wayfinder": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/engineering/wayfinder",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "writing-for-agents": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/productivity/writing-for-agents",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      },
+      "note": "Codex invocation mechanics rewritten; upstream wording merged at the recorded commit."
+    }
+  },
+  "claude/skills": {
+    "codex": {
+      "status": "local"
+    }
+  },
+  "codex/skills": {
+    "unslop": {
+      "status": "local"
+    }
+  }
+}
