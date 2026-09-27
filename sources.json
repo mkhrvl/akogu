@@ -158,7 +158,8 @@
       }
     },
     "testing": {
-      "status": "local"
+      "status": "local",
+      "note": "Replaces mattpocock tdd; covers test-first work and folds in its side-channel and vertical-slice guidance."
     },
     "thermo-nuclear-code-quality-review": {
       "status": "local",

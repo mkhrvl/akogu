@@ -4,27 +4,25 @@ Use these examples when adding, changing, or reviewing tests.
 
 Examples use C#, xUnit v3, and Awesome Assertions. Follow the repository's actual conventions when they differ.
 
-## Test observable behavior
+## Test through the caller's seam
 
-Prefer assertions against behavior visible through a stable public seam.
-
-Avoid tests whose primary assertion is that an internal collaborator was called.
+Check results through the seam the caller uses, not through internal collaborators or storage. Query storage or other side channels directly only when persistence itself is the seam under test.
 
 ### Prefer
 
 ```csharp
 [Fact]
-public async Task Created_account_can_be_retrieved()
+public async Task Deactivated_account_is_excluded_from_active_accounts()
 {
-    var repository = new InMemoryAccountRepository();
-    var sut = new AccountService(repository);
+    await using var db = CreateDbContext();
+    var sut = new AccountService(new SqlAccountRepository(db));
+    var account = await sut.CreateAsync("Acme");
 
-    var created = await sut.CreateAsync("Acme");
+    await sut.DeactivateAsync(account.Id);
 
-    var account = await sut.GetAsync(created.Id);
+    var active = await sut.ListActiveAsync();
 
-    account.Should().NotBeNull();
-    account!.Name.Should().Be("Acme");
+    active.Should().NotContain(a => a.Id == account.Id);
 }
 ```
 
@@ -32,18 +30,19 @@ public async Task Created_account_can_be_retrieved()
 
 ```csharp
 [Fact]
-public async Task Repository_save_is_called()
+public async Task Deactivated_account_has_inactive_status()
 {
-    var repository = new RecordingAccountRepository();
-    var sut = new AccountService(repository);
+    await using var db = CreateDbContext();
+    var sut = new AccountService(new SqlAccountRepository(db));
+    var account = await sut.CreateAsync("Acme");
 
-    await sut.CreateAsync("Acme");
+    await sut.DeactivateAsync(account.Id);
 
-    repository.SaveCallCount.Should().Be(1);
+    db.Accounts.Single(a => a.Id == account.Id).Status.Should().Be(AccountStatus.Inactive);
 }
 ```
 
-The first test describes behavior. The second primarily describes the current implementation.
+The second test proves a column changed, not that callers stop seeing the account. It still passes when `ListActiveAsync` ignores status.
 
 ## Derive expectations independently
 
@@ -116,11 +115,7 @@ public void Calculate_returns_correct_value()
 
 ## Keep one authoritative test level
 
-Put a behavior at the cheapest level that reliably owns its failure mode.
-
-Do not repeat the same assertion at unit, integration, and E2E levels only for additional reassurance.
-
-Add a higher-level test when that boundary introduces another meaningful failure mode, such as:
+Do not repeat the same assertion at unit, integration, and E2E levels only for additional reassurance. A higher-level test earns its place when that boundary introduces another failure mode, such as:
 
 - persistence or query behavior
 - serialization

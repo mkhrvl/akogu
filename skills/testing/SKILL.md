@@ -1,6 +1,6 @@
 ---
 name: testing
-description: Use when adding, changing, debugging, reviewing, or running tests, or when establishing or updating a repository's testing conventions.
+description: Use when adding, changing, debugging, reviewing, or running tests, working test-first (TDD), or establishing or updating a repository's testing conventions.
 ---
 
 # Testing
@@ -38,8 +38,6 @@ Avoid duplicating generic testing rules from this skill or its references.
 
 Test observable behavior through stable public seams rather than implementation details.
 
-Keep one authoritative test level for each behavior. Add higher-level coverage only when that boundary introduces a distinct failure mode.
-
 ## TDD
 
 Use TDD when a failing test helps define the contract or reproduce a bug. Do not require it for every change.
@@ -49,7 +47,7 @@ Work one behavior at a time:
 1. Write one failing test for the next behavior and confirm it fails for the intended reason.
 2. Make the smallest change that passes it.
 3. Refactor without changing behavior.
-4. Repeat.
+4. Repeat. Choose the next test only after this cycle is green, so it reflects what the last cycle taught.
 
 ## References
 
