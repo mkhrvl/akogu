@@ -190,13 +190,12 @@
       }
     },
     "writing-for-agents": {
-      "status": "modified",
+      "status": "pristine",
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/productivity/writing-for-agents",
         "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
-      },
-      "note": "Codex invocation mechanics rewritten; upstream wording merged at the recorded commit."
+      }
     }
   },
   "claude/skills": {
