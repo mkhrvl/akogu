@@ -69,7 +69,7 @@
     },
     "dotnet-conventions": {
       "status": "local",
-      "note": "Merged from the C#/.NET guides of client-endorsement-system-rewrite and myhealth-integration-layer; baseline for new .NET projects. Generalized from MyHealth findings: modular solutions, 422 validation variant, default-only error format, always-split slices, messaging-framework outbox."
+      "note": "Merged from the C#/.NET guides of client-endorsement-system-rewrite and myhealth-integration-layer; baseline for new .NET projects. Generalized from MyHealth findings: modular solutions, 422 validation variant, default-only error format, always-split slices, messaging-framework outbox. Names Wolverine-style generated code as a forced public surface."
     },
     "git-commit": {
       "status": "modified",

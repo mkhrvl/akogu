@@ -4,7 +4,7 @@ Formatting and mechanically enforceable style belong to CSharpier, `.editorconfi
 
 ## Types and visibility
 
-Declare classes and record classes `internal sealed` by default; other type kinds (interfaces, enums, structs, static classes) default to `internal`. Make a type `public` only when another assembly consumes it or a framework requires it, and leave a class unsealed only when it is designed for inheritance. xUnit test classes are the common case: they must be `public` (analyzer xUnit1000), so declare them `public sealed`. Test projects reach internal types through `<InternalsVisibleTo Include="<Name>.Tests.Unit" />` (and the other test assemblies) in the production project file.
+Declare classes and record classes `internal sealed` by default; other type kinds (interfaces, enums, structs, static classes) default to `internal`. Make a type `public` only when another assembly consumes it or a framework requires it, and leave a class unsealed only when it is designed for inheritance. A framework that compiles generated code into its own assembly, such as Wolverine for message handlers, requires public handlers, handler methods, and messages; every type in those public signatures must then be public too (CS0050, CS0051). That surface is forced, not drift; keep the types outside it internal. xUnit test classes are the common case: they must be `public` (analyzer xUnit1000), so declare them `public sealed`. Test projects reach internal types through `<InternalsVisibleTo Include="<Name>.Tests.Unit" />` (and the other test assemblies) in the production project file.
 
 Give each top-level type its own file named after the type. Exceptions: tightly coupled immutable records forming one snapshot, and request subtypes used only by their primary request.
 
