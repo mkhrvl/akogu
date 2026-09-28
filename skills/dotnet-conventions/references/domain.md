@@ -85,6 +85,8 @@ internal sealed class Foo
 
 Model value objects as immutable value-equality types, using records when their generated semantics match. Expose the scalar through a read-only `Value` and unwrap explicitly at infrastructure and serialization boundaries; implicit conversions to or from primitives weaken the type safety the value object exists for. Override `ToString()` to return the textual form, since a record's generated `ToString()` prints `FooCode { Value = ABC }` into logs and strings. Use dedicated serializer and ORM converters.
 
+Introduce a value object when a primitive carries a normalization or validity rule that more than one place depends on, or when it travels between domain, handlers, and ports. Judge the cost by the readability of domain and handler code; converters and mapping at infrastructure and serialization boundaries are a one-time cost and do not count against it. A value object that enforces such a rule is an invariant, not speculative abstraction, so a "fewer moving parts" preference does not argue against it. Avoid static normalizer helpers over raw strings (`Codes.Normalize(value)`): every caller must remember to apply them, and the type cannot say whether a value is already normalized. Keep closed sets as enums and free text as strings.
+
 Use raw `Guid` identifiers where scope makes confusion unlikely. Introduce a strongly typed identifier when several identifiers coexist, cross a domain boundary, or mixing them up would be costly; one that appears in routes or query strings implements `IParsable<T>` so binding works.
 
 ```csharp
