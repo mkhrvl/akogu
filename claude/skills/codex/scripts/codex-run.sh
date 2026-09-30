@@ -8,7 +8,7 @@
 #   codex-run.sh resume <session-id> <brief-file> [dir] follow-up in an existing session (dir: worktree to run in)
 #
 # Options (before the mode):
-#   --model sol|luna   sol = gpt-5.6-sol (default), luna = gpt-6-luna for trivial tasks
+#   --model sol|luna   sol = gpt-6.1-sol (default), luna = gpt-6-luna for trivial tasks
 #   --effort <level>   sol: medium|high (default high for review, else medium); luna: high|xhigh (default high)
 #
 # Run from the repository root (except resume).
@@ -31,7 +31,7 @@ mode=$1; shift
 
 case $tier in
   sol)
-    model=gpt-5.6-sol; allowed="medium high"
+    model=gpt-6.1-sol; allowed="medium high"
     [[ $mode == review ]] && effort=${effort:-high} || effort=${effort:-medium} ;;
   luna) model=gpt-6-luna; effort=${effort:-high}; allowed="high xhigh" ;;
   *) echo "model must be sol or luna, got: $tier" >&2; exit 2 ;;

@@ -27,7 +27,7 @@ Pick by the kind of task, not by how important it sounds.
 | Model / effort | Use for |
 |---|---|
 | `--model luna` (`gpt-6-luna`), `high` (default) or `xhigh` | Trivial tasks: "where is X handled", listing call sites, a one-line fact about the repo, renames and other mechanical edits. It's a lighter model, so run it at `high`, and use `xhigh` when the trivial task is fiddly (many small spots to get right) |
-| `sol` (`gpt-5.6-sol`, default), `medium` | Everything that is not a review or second opinion: investigations, debugging, research, implementation |
+| `sol` (`gpt-6.1-sol`, default), `medium` | Everything that is not a review or second opinion: investigations, debugging, research, implementation |
 | `sol`, `high` | Reviews and second opinions only: `review` mode (where it is the default), plus `read` or `resume` runs whose brief asks Codex to critique a diff, plan, design, or decision |
 
 sol accepts only `medium` or `high`, and luna only `high` or `xhigh`. The script rejects anything else. Don't raise non-review work to `high`; if a result comes back shallow, follow up with `resume` and a sharper brief. `resume` uses whatever `--model` you pass (default sol), so pass `--model luna` again to stay on luna, or omit it to move a luna session up to sol.
