@@ -14,6 +14,8 @@ Choose the error type by what the caller did wrong, because it decides the HTTP 
 | `Conflict` | Duplicates, stale state, or an invalid concurrent transition |
 | `Unauthorized` / `Forbidden` | Missing authentication / insufficient permission |
 
+`NotFound` is only for the resource the request addresses, usually by its route. A request value that references a missing or unusable entity, such as an unknown or inactive branch code in the body, is `Validation` of that field: the caller fixes it by changing the value.
+
 Reserve exceptions for programming-contract violations, broken invariants or corrupted state, unexpected infrastructure failures, and framework exception contracts. Catch only a specific exception the current boundary can recover from, translate, enrich, or compensate for. Clean up with `using`, `await using`, or `finally`; rethrow with `throw;` and keep the original as `InnerException` when wrapping. Log an exception once, at the boundary that handles it. Caller cancellation propagates as `OperationCanceledException`, never as a result error.
 
 ## Error catalogs

@@ -69,7 +69,7 @@
     },
     "dotnet-conventions": {
       "status": "local",
-      "note": "Merged from the C#/.NET guides of client-endorsement-system-rewrite and myhealth-integration-layer; baseline for new .NET projects. Generalized from MyHealth findings: modular solutions, 422 validation variant, default-only error format, always-split slices, messaging-framework outbox. Names Wolverine-style generated code as a forced public surface."
+      "note": "Merged from the C#/.NET guides of client-endorsement-system-rewrite and myhealth-integration-layer; baseline for new .NET projects. Generalized from MyHealth findings: modular solutions, 422 validation variant, default-only error format, always-split slices, messaging-framework outbox. Names Wolverine-style generated code as a forced public surface. Error flow: unresolved body references are field Validation; handler-side field failures use ThrowError; FastEndpoints ToProblem builds on ProblemDetails (one formatter for validators, results, exception handler, status pages); downstream outcomes map to 502/503/504."
     },
     "git-commit": {
       "status": "modified",

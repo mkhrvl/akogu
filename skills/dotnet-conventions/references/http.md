@@ -12,7 +12,7 @@ Require authentication by default through a fallback authorization policy. Publi
 
 ## Error responses
 
-Every error response, whether from a validator, a mapped `ErrorOr` result, or an unhandled exception, is RFC 9457 Problem Details (`application/problem+json`), and every expected error in it carries a stable code. The format below is the default for a new API; an established API whose Problem Details already carry those codes keeps its own layout. The default adds `traceId` and an `errors` array as extension members. Each `errors` entry carries `name` (the field, or `generalErrors` for errors not tied to a field), `reason` (human-readable), and a stable `code` that clients react to instead of parsing messages or depending on property names. `detail` repeats the reason when there is exactly one error:
+Every error response, whether from a validator, a mapped `ErrorOr` result, or an unhandled exception, is RFC 9457 Problem Details (`application/problem+json`). The format below is the default for a new API, and every expected error in it carries a stable code. An established API keeps its own layout; recommend codes as an improvement rather than adding them unasked. The default adds `traceId` and an `errors` array as extension members. Each `errors` entry carries `name` (the field, or `generalErrors` for errors not tied to a field), `reason` (human-readable), and a stable `code` that clients react to instead of parsing messages or depending on property names. `detail` repeats the reason when there is exactly one error:
 
 ```json
 {
@@ -28,7 +28,7 @@ Every error response, whether from a validator, a mapped `ErrorOr` result, or an
 }
 ```
 
-`type` is the RFC 9110 section for the status and `title` its standard phrase, both from one shared `ProblemTypes` helper used by every path; a custom documented `type` URI is unnecessary because each error's `code` already distinguishes errors. FastEndpoints produces this format once configured as in [FastEndpoints](fastendpoints.md#configuration). Controllers and minimal APIs emit the same wire format through an application-owned contract, never by depending on the FastEndpoints CLR type:
+`type` is the RFC 9110 section for the status and `title` its standard phrase, except validation responses, which use "One or more validation errors occurred."; both come from one shared `ProblemTypes` helper used by every path; a custom documented `type` URI is unnecessary because each error's `code` already distinguishes errors. FastEndpoints produces this format once configured as in [FastEndpoints](fastendpoints.md#configuration), and builds `ToProblem` on its own `ProblemDetails` ([error results](fastendpoints.md#error-results)). Controllers and minimal APIs emit the same wire format through an application-owned contract, never by depending on the FastEndpoints CLR type:
 
 ```csharp
 internal sealed record ApiProblem
@@ -45,11 +45,11 @@ internal sealed record ApiProblem
 internal sealed record ApiProblemError(string Name, string Reason, string Code);
 ```
 
-One shared `ToProblem(HttpContext)` extension maps `ErrorOr` errors to this contract: `Instance` from the request path, `TraceId` from `HttpContext.TraceIdentifier`, each error's `Name` from its `name` metadata with the first segment camelCased as FastEndpoints does (`generalErrors` when absent), and `Detail` when there is exactly one error. It returns `TypedResults.Json(problem, statusCode: problem.Status, contentType: "application/problem+json")`. The first error's type decides the status:
+For controllers and minimal APIs, one shared `ToProblem(HttpContext)` extension maps `ErrorOr` errors to this contract: `Instance` from the request path, `TraceId` from `HttpContext.TraceIdentifier`, each error's `Name` from its `name` metadata with the first segment camelCased as FastEndpoints does (`generalErrors` when absent), and `Detail` when there is exactly one error. It returns `TypedResults.Json(problem, statusCode: problem.Status, contentType: "application/problem+json")`. FastEndpoints repositories use the [FastEndpoints implementation](fastendpoints.md#error-results); both follow the status mapping below. The first error's type decides the status unless the caller passes one:
 
 | ErrorOr type | Status | `type` (RFC 9110) | `title` |
 | --- | --- | --- | --- |
-| `Validation` | `400` | `#section-15.5.1` | One or more validation errors occurred. |
+| `Validation` | Configured validation status: `400`, or `422` | `#section-15.5.1`, or `#section-15.5.21` | One or more validation errors occurred. |
 | `Unauthorized` | `401` | `#section-15.5.2` | Unauthorized |
 | `Forbidden` | `403` | `#section-15.5.4` | Forbidden |
 | `NotFound` | `404` | `#section-15.5.5` | Not Found |
@@ -57,13 +57,15 @@ One shared `ToProblem(HttpContext)` extension maps `ErrorOr` errors to this cont
 | `Failure` | `422` | `#section-15.5.21` | Unprocessable Content |
 | `Unexpected` and anything else | `500` | `#section-15.6.1` | Internal Server Error |
 
-Each `type` is `https://www.rfc-editor.org/rfc/rfc9110` plus the section anchor.
+Each `type` is `https://www.rfc-editor.org/rfc/rfc9110` plus the section anchor. `ProblemTypes` covers every status the API sends, including `405` (`#section-15.5.6`, Method Not Allowed), `415` (`#section-15.5.16`, Unsupported Media Type), `502` (`#section-15.6.3`, Bad Gateway), `503` (`#section-15.6.4`, Service Unavailable), and `504` (`#section-15.6.5`, Gateway Timeout).
 
 Validator failures and `Validation` results return the same status. `400` is the default. `422` (`#section-15.5.21`, Unprocessable Content) is an accepted variant that separates a body that cannot be read (binding, `400`) from readable but invalid content (`422`); it applies to both paths, which FastEndpoints configures with `c.Errors.StatusCode = StatusCodes.Status422UnprocessableEntity`. An externally dictated contract, such as an OAuth token endpoint (RFC 6749) or a vendor's callback specification, keeps the statuses it defines.
 
+An operation that completes through a downstream call within the request maps the port's classified technical outcomes at the endpoint: an invalid or unexplained refusal is `502`, an unavailable system `503`, a timeout `504`; collapse them into `502` when callers react the same way. A downstream business rejection with a meaning the caller can act on maps like a local one (`Failure`, `Conflict`). Failures the adapter did not anticipate still propagate to the central handler. Send a cataloged error with the status passed explicitly, `FooErrors.NotAccepted.ToProblem(HttpContext, StatusCodes.Status502BadGateway)`, so the response keeps the shared format and a code.
+
 Declare the contract as the error response schema in OpenAPI and document any non-obvious client-visible mapping. Item-level outcomes within a batch stay in a successful response body.
 
-Handle unexpected failures centrally: `AddProblemDetails()`, `UseExceptionHandler()`, and an `IExceptionHandler` that logs once and returns the same wire format with status `500`, code `General.Unexpected`, and no exception details outside `Development`. Add `UseStatusCodePages()` so bodiless 404s and 405s are ProblemDetails too.
+Handle unexpected failures centrally: `AddProblemDetails()`, `UseExceptionHandler()`, and an `IExceptionHandler` that logs once and sends `ToProblem` with status `500`, code `General.Unexpected`, and no exception details outside `Development`. Add `UseStatusCodePages()` sending bodiless responses, such as `404` and `405`, through `ToProblem` too, with `General.*` codes, so every error body has one shape.
 
 ## Production boundary
 

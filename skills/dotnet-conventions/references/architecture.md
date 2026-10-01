@@ -14,7 +14,7 @@ Each operation is a folder, such as `Features/Foos/CreateFoo/`, holding one same
 
 ## Endpoints as handlers
 
-An endpoint whose operation has one production caller is that operation's handler. It holds the workflow as a visible sequence (receive input, load state, call domain or integration behavior, persist, map the result) and delegates focused domain, infrastructure, or reusable work; a cohesive endpoint has no line limit. Keep business rules in domain types, where unit tests cover them cheaply, so the endpoint is orchestration that integration tests exercise once per path. Such an endpoint always has a request validator: it is the only validation between the wire and the domain.
+An endpoint whose operation has one production caller is that operation's handler. It holds the workflow as a visible sequence (receive input, load state, call domain or integration behavior, persist, map the result) and delegates focused domain, infrastructure, or reusable work; a cohesive endpoint has no line limit. Keep business rules in domain types, where unit tests cover them cheaply, so the endpoint is orchestration that integration tests exercise once per path. Such an endpoint always has a request validator for transport shape; field checks that need I/O run in the endpoint's workflow ([FastEndpoints](fastendpoints.md#handler-side-field-failures)).
 
 Extract a transport-independent operation only when a second production caller needs it: a UI such as Blazor, a worker, a consumer, a CLI, or another endpoint, in this host or another. Tests and file length do not earn that boundary. After extraction the endpoint keeps binding, authorization, HTTP errors, headers, streaming, and response shaping, and calls the handler.
 
@@ -54,7 +54,7 @@ internal sealed class CreateFooCommandHandler
 
         var foo = Foo.Create(command.Code);
         if (foo.IsError)
-            return foo.Errors;
+            return foo.Errors.ForField(nameof(CreateFooCommand.Code));
 
         _db.Foos.Add(foo.Value);
         await _db.SaveChangesAsync(cancellationToken);
@@ -65,6 +65,8 @@ internal sealed class CreateFooCommandHandler
 ```
 
 `ToValidationErrors()` is one shared extension that maps each `ValidationFailure` to `Error.Validation(failure.ErrorCode, failure.ErrorMessage, new Dictionary<string, object> { ["name"] = failure.PropertyName })`.
+
+A handler that finds a Command value invalid only through I/O, such as a reference that does not resolve, returns that error carrying the field's `name` too: `branch.Errors.ForField(nameof(CreateFooCommand.BranchCode))`. `ForField(name)` is the companion extension beside `ToValidationErrors()`; it rebuilds each error with `Error.Custom((int)error.Type, error.Code, error.Description, metadata)`, because ErrorOr errors are immutable. Errors a value factory returns, such as `Foo.Create(command.Code)`, carry the field's `name` the same way. Handlers name Command properties; where a Request property maps to a differently named Command property, the endpoint renames the error's `name` before sending it.
 
 Workers and consumers follow the same shape: create a scope per unit of work, build the Command, call the handler, and log the result where the flow decides what happens next.
 

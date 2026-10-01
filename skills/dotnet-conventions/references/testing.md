@@ -40,7 +40,7 @@
 Split tests into `*.Tests.Unit`, `*.Tests.Integration`, and `*.Tests.Architecture` projects, created only when they have meaningful tests. Each level owns its failure modes:
 
 - **Unit**: domain rules, normalization, state transitions, validators, isolated application behavior.
-- **Integration**: EF Core mappings, queries, constraints, transactions, and migrations against the real provider; routing, authentication, binding, serialization, error format, and status translation through `WebApplicationFactory`; outbound clients against stubbed HTTP.
+- **Integration**: EF Core mappings, queries, constraints, transactions, and migrations against the real provider; routing, authentication, binding, serialization, error format (including the `application/problem+json` content type on every error path), and status translation through `WebApplicationFactory`; outbound clients against stubbed HTTP.
 - **Architecture**: project references, dependency direction (including the `DbContext` exception), and structural rules.
 
 ## Structure and naming
