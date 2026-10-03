@@ -10,28 +10,60 @@
       "note": "Differs from the recorded commit; not checked whether local or upstream changed."
     },
     "aspire": {
-      "status": "local",
-      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/microsoft/aspire-skills.git",
+        "path": "skills/aspire",
+        "commit": "a83ca78b9d35b8238f9c4fdba72cb779defe2a90"
+      }
     },
     "aspire-deployment": {
-      "status": "local",
-      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/microsoft/aspire-skills.git",
+        "path": "skills/aspire-deployment",
+        "commit": "a83ca78b9d35b8238f9c4fdba72cb779defe2a90"
+      }
     },
     "aspire-init": {
-      "status": "local",
-      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/microsoft/aspire-skills.git",
+        "path": "skills/aspire-init",
+        "commit": "a83ca78b9d35b8238f9c4fdba72cb779defe2a90"
+      }
     },
     "aspire-monitoring": {
-      "status": "local",
-      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/microsoft/aspire-skills.git",
+        "path": "skills/aspire-monitoring",
+        "commit": "a83ca78b9d35b8238f9c4fdba72cb779defe2a90"
+      }
     },
     "aspire-orchestration": {
-      "status": "modified",
-      "note": "Microsoft Aspire skill; install origin not recorded. Leaves the host running after a task unless shutdown is requested (promoted from project copies)."
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/microsoft/aspire-skills.git",
+        "path": "skills/aspire-orchestration",
+        "commit": "a83ca78b9d35b8238f9c4fdba72cb779defe2a90"
+      }
+    },
+    "aspire-project-v2-migration": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/microsoft/aspire-skills.git",
+        "path": "skills/aspire-project-v2-migration",
+        "commit": "a83ca78b9d35b8238f9c4fdba72cb779defe2a90"
+      }
     },
     "aspireify": {
-      "status": "local",
-      "note": "Microsoft Aspire skills (metadata author: Microsoft); install origin not recorded."
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/microsoft/aspire-skills.git",
+        "path": "skills/aspireify",
+        "commit": "a83ca78b9d35b8238f9c4fdba72cb779defe2a90"
+      }
     },
     "code-review": {
       "status": "modified",
