@@ -6,14 +6,14 @@
 
 | Path | Contents | Linked into |
 | --- | --- | --- |
-| `skills/` | Global skills for every agent | `~/.agents/skills`, `~/.claude/skills` |
+| `skills/<group>/` | Global skills for every agent, grouped by the kind of work: `engineering`, `productivity`, `dotnet`, `aspire`, `web` | `~/.agents/skills`, `~/.claude/skills` |
 | `codex/skills/` | Codex-only skills | `~/.agents/skills` |
 | `claude/skills/` | Claude Code-only skills | `~/.claude/skills` |
 | `projects/<repo>/skills/` | Snapshot copies of a project's local skills | Not linked |
 | `sources.json` | Origin and status of every vendored skill | |
 | `scripts/` | Linking, upstream comparison, snapshots | |
 
-Codex reads user skills from `~/.agents/skills`; Claude Code reads `~/.claude/skills`. Each skill is linked individually, so skills installed by other tools (for example Claude Code's managed `~/.claude/skills/synced`) sit alongside them untouched.
+Codex reads user skills from `~/.agents/skills`; Claude Code reads `~/.claude/skills`. Groups exist only in akogu: each skill is linked individually and flat, so a skill name must be unique across groups, and skills installed by other tools (for example Claude Code's managed `~/.claude/skills/synced`) sit alongside them untouched.
 
 Agent instructions live in `AGENTS.md` only. Claude Code reads `AGENTS.md` directly when no `CLAUDE.md` exists (v2.1.277+), so there is no `CLAUDE.md`.
 
@@ -58,4 +58,4 @@ Upstream checkouts are cached in `~/.cache/akogu/upstream`.
 scripts/snapshot-project.sh ~/some-repo
 ```
 
-Copies the project's `.agents/skills/*` directories that are missing from, or differ from, `skills/`. A snapshot marked as a variant may be a deliberate project override or simply an older copy of a global skill.
+Copies the project's `.agents/skills/*` directories that are missing from, or differ from, the global skills. A snapshot marked as a variant may be a deliberate project override or simply an older copy of a global skill.

@@ -1,14 +1,15 @@
 {
-  "skills": {
-    "analyzing-dotnet-performance": {
-      "status": "diverged",
-      "upstream": {
-        "repo": "https://github.com/dotnet/skills.git",
-        "path": "plugins/dotnet-diag/skills/analyzing-dotnet-performance",
-        "commit": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d"
-      },
-      "note": "Differs from the recorded commit; not checked whether local or upstream changed."
-    },
+  "claude/skills": {
+    "codex": {
+      "status": "local"
+    }
+  },
+  "codex/skills": {
+    "unslop": {
+      "status": "local"
+    }
+  },
+  "skills/aspire": {
     "aspire": {
       "status": "pristine",
       "upstream": {
@@ -64,7 +65,55 @@
         "path": "skills/aspireify",
         "commit": "a83ca78b9d35b8238f9c4fdba72cb779defe2a90"
       }
+    }
+  },
+  "skills/web": {
+    "playwright-cli": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/microsoft/playwright-cli.git",
+        "path": "skills/playwright-cli",
+        "commit": "b85c7a736bb473bf55b584e54a09ffa698d6d871"
+      },
+      "note": "Description rewritten to front-load browser verification and prefer it over built-in browser tools (absorbs the retired playwright-browser project skill)."
     },
+    "web-design-guidelines": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/vercel-labs/agent-skills.git",
+        "path": "skills/web-design-guidelines",
+        "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+      },
+      "note": "Fetches rules with any web-fetch capability (not only WebFetch), treats them as reference rather than authority, reports a failed fetch instead of claiming a full review, and scopes from current UI changes before asking (promoted from project copies)."
+    }
+  },
+  "skills/productivity": {
+    "grilling": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/productivity/grilling",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "handoff": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/productivity/handoff",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    },
+    "writing-for-agents": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/mattpocock/skills.git",
+        "path": "skills/productivity/writing-for-agents",
+        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+      }
+    }
+  },
+  "skills/engineering": {
     "code-review": {
       "status": "modified",
       "upstream": {
@@ -99,18 +148,6 @@
         "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
       }
     },
-    "dotnet-conventions": {
-      "status": "local",
-      "note": "Merged from the C#/.NET guides of client-endorsement-system-rewrite and myhealth-integration-layer; baseline for new .NET projects. Generalized from MyHealth findings: modular solutions, 422 validation variant, default-only error format, always-split slices, messaging-framework outbox. Names Wolverine-style generated code as a forced public surface. Error flow: unresolved body references are field Validation; handler-side field failures use ThrowError; FastEndpoints ToProblem builds on ProblemDetails (one formatter for validators, results, exception handler, status pages); downstream outcomes map to 502/503/504."
-    },
-    "dotnet-inspect": {
-      "status": "pristine",
-      "upstream": {
-        "repo": "https://github.com/richlander/dotnet-skills.git",
-        "path": "skills/dotnet-inspect",
-        "commit": "eaeae3b0c544b0f8714da363c30021e06a6461a0"
-      }
-    },
     "git-commit": {
       "status": "modified",
       "upstream": {
@@ -125,22 +162,6 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/grill-with-docs",
-        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
-      }
-    },
-    "grilling": {
-      "status": "pristine",
-      "upstream": {
-        "repo": "https://github.com/mattpocock/skills.git",
-        "path": "skills/productivity/grilling",
-        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
-      }
-    },
-    "handoff": {
-      "status": "pristine",
-      "upstream": {
-        "repo": "https://github.com/mattpocock/skills.git",
-        "path": "skills/productivity/handoff",
         "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
       }
     },
@@ -160,15 +181,6 @@
         "path": "skills/engineering/improve-codebase-architecture",
         "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
       }
-    },
-    "playwright-cli": {
-      "status": "modified",
-      "upstream": {
-        "repo": "https://github.com/microsoft/playwright-cli.git",
-        "path": "skills/playwright-cli",
-        "commit": "b85c7a736bb473bf55b584e54a09ffa698d6d871"
-      },
-      "note": "Description rewritten to front-load browser verification and prefer it over built-in browser tools (absorbs the retired playwright-browser project skill)."
     },
     "prototype": {
       "status": "pristine",
@@ -238,33 +250,29 @@
         "path": "skills/engineering/wayfinder",
         "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
       }
-    },
-    "web-design-guidelines": {
-      "status": "modified",
+    }
+  },
+  "skills/dotnet": {
+    "analyzing-dotnet-performance": {
+      "status": "diverged",
       "upstream": {
-        "repo": "https://github.com/vercel-labs/agent-skills.git",
-        "path": "skills/web-design-guidelines",
-        "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+        "repo": "https://github.com/dotnet/skills.git",
+        "path": "plugins/dotnet-diag/skills/analyzing-dotnet-performance",
+        "commit": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d"
       },
-      "note": "Fetches rules with any web-fetch capability (not only WebFetch), treats them as reference rather than authority, reports a failed fetch instead of claiming a full review, and scopes from current UI changes before asking (promoted from project copies)."
+      "note": "Differs from the recorded commit; not checked whether local or upstream changed."
     },
-    "writing-for-agents": {
+    "dotnet-conventions": {
+      "status": "local",
+      "note": "Merged from the C#/.NET guides of client-endorsement-system-rewrite and myhealth-integration-layer; baseline for new .NET projects. Generalized from MyHealth findings: modular solutions, 422 validation variant, default-only error format, always-split slices, messaging-framework outbox. Names Wolverine-style generated code as a forced public surface. Error flow: unresolved body references are field Validation; handler-side field failures use ThrowError; FastEndpoints ToProblem builds on ProblemDetails (one formatter for validators, results, exception handler, status pages); downstream outcomes map to 502/503/504."
+    },
+    "dotnet-inspect": {
       "status": "pristine",
       "upstream": {
-        "repo": "https://github.com/mattpocock/skills.git",
-        "path": "skills/productivity/writing-for-agents",
-        "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+        "repo": "https://github.com/richlander/dotnet-skills.git",
+        "path": "skills/dotnet-inspect",
+        "commit": "eaeae3b0c544b0f8714da363c30021e06a6461a0"
       }
-    }
-  },
-  "claude/skills": {
-    "codex": {
-      "status": "local"
-    }
-  },
-  "codex/skills": {
-    "unslop": {
-      "status": "local"
     }
   }
 }

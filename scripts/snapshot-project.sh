@@ -20,11 +20,12 @@ for dir in "$src"/*/; do
   dir="${dir%/}"
   name="$(basename "$dir")"
   [[ -L "$dir" ]] && continue
-  if [[ -d "$AKOGU/skills/$name" ]] && diff -rq "$dir" "$AKOGU/skills/$name" >/dev/null; then
+  global=("$AKOGU"/skills/*/"$name")
+  if [[ -d "${global[0]}" ]] && diff -rq "$dir" "${global[0]}" >/dev/null; then
     continue
   fi
   cp -r "$dir" "$dest/"
-  if [[ -d "$AKOGU/skills/$name" ]]; then
+  if [[ -d "${global[0]}" ]]; then
     echo "  variant  $name"
   else
     echo "  local    $name"

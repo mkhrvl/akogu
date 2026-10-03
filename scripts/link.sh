@@ -6,12 +6,14 @@
 #   scripts/link.sh --apply --prune
 #                              also move entries akogu does not manage to the backup
 #
-# skills/*        -> $AGENTS_SKILLS_DIR and $CLAUDE_SKILLS_DIR
-# codex/skills/*  -> $AGENTS_SKILLS_DIR only (read by Codex)
-# claude/skills/* -> $CLAUDE_SKILLS_DIR only
+# skills/<group>/* -> $AGENTS_SKILLS_DIR and $CLAUDE_SKILLS_DIR
+# codex/skills/*   -> $AGENTS_SKILLS_DIR only (read by Codex)
+# claude/skills/*  -> $CLAUDE_SKILLS_DIR only
 set -euo pipefail
 
 AKOGU="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+GLOBAL_ROOTS=()
+for dir in "$AKOGU"/skills/*/; do GLOBAL_ROOTS+=("${dir%/}"); done
 AGENTS_SKILLS_DIR="${AGENTS_SKILLS_DIR:-$HOME/.agents/skills}"
 CLAUDE_SKILLS_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 BACKUP_DIR="${BACKUP_DIR:-$HOME/.akogu-backup/$(date +%Y%m%d-%H%M%S)}"
@@ -85,11 +87,8 @@ report_unmanaged() {
     skip=false
     for r in "${reserved[@]}"; do [[ "$name" == "$r" ]] && skip=true; done
     $skip && continue
-    if [[ -L "$entry" && "$(readlink "$entry")" == "$AKOGU"/* ]]; then
-      [[ -e "$entry" ]] && continue
-    elif is_managed "$name" "${managed_roots[@]}"; then
-      continue
-    fi
+    is_managed "$name" "${managed_roots[@]}" && continue
+    [[ -L "$entry" && -e "$entry" && "$(readlink "$entry")" == "$AKOGU"/* ]] && continue
     if $prune; then
       backup "$entry" "$bucket"
     else
@@ -98,12 +97,20 @@ report_unmanaged() {
   done
 }
 
+# Groups flatten into one directory per agent, so a name may appear in only one group.
+duplicates="$(for root in "${GLOBAL_ROOTS[@]}"; do ls "$root"; done | sort | uniq -d)"
+if [[ -n "$duplicates" ]]; then
+  echo "skill names used in more than one group:" >&2
+  echo "$duplicates" >&2
+  exit 1
+fi
+
 $apply || echo "Dry run. Re-run with --apply to make changes."
 
 echo "$AGENTS_SKILLS_DIR"
-link_into "$AKOGU/skills" "$AGENTS_SKILLS_DIR" agents
+for root in "${GLOBAL_ROOTS[@]}"; do link_into "$root" "$AGENTS_SKILLS_DIR" agents; done
 link_into "$AKOGU/codex/skills" "$AGENTS_SKILLS_DIR" agents
-report_unmanaged "$AGENTS_SKILLS_DIR" agents "$AKOGU/skills" "$AKOGU/codex/skills" --
+report_unmanaged "$AGENTS_SKILLS_DIR" agents "${GLOBAL_ROOTS[@]}" "$AKOGU/codex/skills" --
 # Left in place, `npx skills update` would write through the links into akogu.
 skill_lock="$(dirname "$AGENTS_SKILLS_DIR")/.skill-lock.json"
 if [[ -e "$skill_lock" ]]; then
@@ -111,6 +118,6 @@ if [[ -e "$skill_lock" ]]; then
 fi
 
 echo "$CLAUDE_SKILLS_DIR"
-link_into "$AKOGU/skills" "$CLAUDE_SKILLS_DIR" claude
+for root in "${GLOBAL_ROOTS[@]}"; do link_into "$root" "$CLAUDE_SKILLS_DIR" claude; done
 link_into "$AKOGU/claude/skills" "$CLAUDE_SKILLS_DIR" claude
-report_unmanaged "$CLAUDE_SKILLS_DIR" claude "$AKOGU/skills" "$AKOGU/claude/skills" -- "${CLAUDE_RESERVED[@]}"
+report_unmanaged "$CLAUDE_SKILLS_DIR" claude "${GLOBAL_ROOTS[@]}" "$AKOGU/claude/skills" -- "${CLAUDE_RESERVED[@]}"
