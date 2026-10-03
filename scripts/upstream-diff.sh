@@ -45,10 +45,10 @@ while IFS=$'\t' read -r root name status repo path; do
   head="$(git -C "$dir" rev-parse --short HEAD)"
   if [[ ! -d "$theirs" ]]; then
     printf '%-36s %-9s removed upstream (%s)\n' "$name" "$status" "$head"
-  elif diff -rq "$theirs" "$ours" >/dev/null; then
+  elif diff -rq -x evals "$theirs" "$ours" >/dev/null; then
     printf '%-36s %-9s same as upstream %s\n' "$name" "$status" "$head"
   elif [[ ${#filter[@]} -gt 0 ]]; then
-    diff -ru "$theirs" "$ours" | sed "s#$dir/#upstream/#; s#$AKOGU/#akogu/#" || true
+    diff -ru -x evals "$theirs" "$ours" | sed "s#$dir/#upstream/#; s#$AKOGU/#akogu/#" || true
   else
     printf '%-36s %-9s differs from upstream %s\n' "$name" "$status" "$head"
   fi
