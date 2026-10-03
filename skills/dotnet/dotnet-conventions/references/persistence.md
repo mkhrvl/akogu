@@ -10,11 +10,11 @@ Request-scoped endpoints inject the context and treat the request as the unit of
 
 Read models project directly with no-tracking queries. Load aggregates with tracking only when calling behavior on them and saving. Compare value-converted properties as their value-object type inside LINQ, never through `.Value`. Use explicit `AsSplitQuery()` when loading several sibling collections, as a local choice rather than a global default; split reads of one aggregate need a consistent view (a snapshot transaction or the aggregate's write lock). Load a filtered subset explicitly rather than `Include()`-ing the whole navigation.
 
-Raw SQL is for requirements LINQ cannot express safely, such as `FOR UPDATE`, `SKIP LOCKED`, or `UPDLOCK`. It lives in `Infrastructure` behind a port and uses parameterized `FromSql(...)`.
+Raw SQL is for requirements LINQ cannot express safely, such as `FOR UPDATE`, `SKIP LOCKED`, or `UPDLOCK`. It lives in `Infrastructure` behind a port and uses parameterized `FromSql(...)` or [Dapper](dapper.md).
 
 ## Saving and transactions
 
-The use case owns the consistency boundary. Make the related changes, dependent records, and outbox messages, then call `SaveChangesAsync()` once near the end; the provider wraps that single save in a transaction. Repositories never save or commit on their own. When a durable messaging framework such as Wolverine or MassTransit owns the transaction and outbox, follow its unit-of-work and outbox model instead of hand-rolling one.
+The use case owns the consistency boundary. Make the related changes, dependent records, and outbox messages, then call `SaveChangesAsync()` once near the end; the provider wraps that single save in a transaction. Repositories never save or commit on their own. When a durable messaging framework owns the transaction and outbox, follow its unit-of-work and outbox model instead of hand-rolling one ([Wolverine](wolverine.md#outbox)).
 
 Add an explicit transaction only for multiple atomic save phases, mixed EF and direct SQL, a specific isolation level, or another defined atomic workflow. Keep it short and free of HTTP calls, file storage, or other external I/O; when resources cannot share a transaction, use an outbox, idempotency, durable retry, or reconciliation.
 

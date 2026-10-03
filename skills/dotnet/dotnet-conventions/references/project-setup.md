@@ -92,6 +92,9 @@ dotnet_diagnostic.IDE0052.severity = warning
 dotnet_diagnostic.IDE0059.severity = warning
 dotnet_diagnostic.IDE1006.severity = warning
 dotnet_diagnostic.CA1848.severity = none
+dotnet_diagnostic.CA1852.severity = warning
+dotnet_code_quality.CA1852.ignore_internalsvisibleto = true
+dotnet_diagnostic.CA2016.severity = warning
 
 dotnet_naming_style.pascal.capitalization = pascal_case
 dotnet_naming_style.underscore_camel.required_prefix = _
@@ -129,7 +132,7 @@ generated_code = true
 generated_code = true
 ```
 
-The private-constant rule is more specific than the private-field rule, so it takes precedence; private `static readonly` fields follow the `_camelCase` field rule. Migration classes themselves stay analyzer-visible because they may carry hand-written backfills and SQL.
+CA1852 enforces the `internal sealed` default; it is off by default and skips any assembly with `InternalsVisibleTo`, which test access requires, unless `ignore_internalsvisibleto` is set. CA2016 enforces passing the caller's cancellation token. The private-constant rule is more specific than the private-field rule, so it takes precedence; private `static readonly` fields follow the `_camelCase` field rule. Migration classes themselves stay analyzer-visible because they may carry hand-written backfills and SQL.
 
 ## Local tools
 
@@ -210,7 +213,7 @@ builder.AddProject<Projects.Foo_Web>("web")
     .WaitForCompletion(migrations);
 ```
 
-`WaitForCompletion` requires exit code 0, and an exception thrown from a `BackgroundService` still exits with 0, so the worker sets a non-zero exit code on failure:
+`WaitForCompletion` requires exit code 0. Through .NET 10 an exception thrown from a `BackgroundService` still exits with 0, and this worker catches its failure to log it, so it sets a non-zero exit code itself:
 
 ```csharp
 public sealed class MigrationWorker : BackgroundService

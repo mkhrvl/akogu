@@ -25,6 +25,9 @@ Read every reference whose trigger matches the work before writing code; a chang
 | Adding logs, metrics, options, configuration, dependency injection, or abstractions | [Application](references/application.md) |
 | Modeling expected failures, validation, entities, value objects, identifiers, enums, time, or money | [Domain](references/domain.md) |
 | Changing EF Core models, queries, transactions, or migrations | [Persistence](references/persistence.md) |
+| Writing Dapper queries, stored procedure calls, or other raw SQL | [Dapper](references/dapper.md) |
+| Adding Wolverine messages, handlers, queues, outbox publishing, or error policies | [Wolverine](references/wolverine.md) |
+| Writing or changing Blazor components, pages, forms, or render modes | [Blazor](references/blazor.md) |
 | Adding inbound endpoints, shaping error responses, hardening for production, or calling external HTTP systems | [HTTP](references/http.md) |
 | Writing or changing FastEndpoints endpoints, validators, or configuration | [FastEndpoints](references/fastendpoints.md) |
 | Writing, naming, or structuring .NET tests | [Testing](references/testing.md) |

@@ -10,7 +10,7 @@ Give each top-level type its own file named after the type. Exceptions: tightly 
 
 ## Constructors and dependencies
 
-Use traditional constructors for any type that receives dependencies: handlers, endpoints, services, adapters, middleware, workers, and test helpers. Store each dependency in a `private readonly` `_camelCase` field, so a reviewer can tell injected dependencies from locals, parameters, and mutable state at a glance.
+Use traditional constructors for any type that receives dependencies: handlers, endpoints, services, adapters, middleware, workers, and test helpers. Razor components are the exception ([Blazor](blazor.md#component-files)). Store each dependency in a `private readonly` `_camelCase` field, so a reviewer can tell injected dependencies from locals, parameters, and mutable state at a glance.
 
 Primary constructors fit records and pure pass-through types whose parameters only flow to a base constructor or initializers, such as `class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)`. Set `csharp_style_prefer_primary_constructors = false` so tooling does not suggest conversions.
 
@@ -74,4 +74,4 @@ Every asynchronous operation is either awaited or handed to an explicit owner th
 
 ## Background services
 
-A `BackgroundService` runs its loop directly in `ExecuteAsync`. An unhandled exception stops the whole host by default, so a long-running loop catches, logs, and continues per iteration, and lets `OperationCanceledException` from the stopping token end the loop. Wait between iterations with `PeriodicTimer` or `TimeProvider`-based delays rather than `Thread.Sleep` or unbounded `Task.Delay` chains. A one-shot worker that must signal failure to its orchestrator sets `Environment.ExitCode` to non-zero before stopping the application; a thrown exception alone exits with code 0.
+A `BackgroundService` runs its loop directly in `ExecuteAsync`. An unhandled exception stops the whole host by default, so a long-running loop catches, logs, and continues per iteration, and lets `OperationCanceledException` from the stopping token end the loop. Wait between iterations with `PeriodicTimer` or `TimeProvider`-based delays rather than `Thread.Sleep` or unbounded `Task.Delay` chains. A one-shot worker that must signal failure to its orchestrator sets `Environment.ExitCode` to non-zero before stopping the application. Through .NET 10 a thrown exception alone exits with code 0 (from .NET 11 the host exits non-zero), and a worker that catches its own failure must set the code on every version.

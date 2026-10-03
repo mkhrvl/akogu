@@ -24,7 +24,7 @@ Names follow the transport. HTTP contracts are `*Request` and `*Response`; trans
 
 A handler is a concrete `internal sealed` class with one method, `HandleAsync(TCommand command, CancellationToken cancellationToken)`, injected directly into its callers. Give it an interface only for the reasons in [application](application.md#composition-and-dependency-injection), never a generic `ICommandHandler<T>`. An input-free handler accepts only `CancellationToken`; do not create empty marker Commands or Queries.
 
-A Command sent through a durable message bus, such as a Wolverine outbox message, keeps the `*Command` and `*CommandHandler` names, but the framework dictates its handler's shape: visibility, method name, discovery, and return type follow the framework rather than this section, and senders publish the Command instead of injecting the handler. Name it for one unit of work, such as `DeliverLaboratoryOrderCommand`.
+A Command sent through a durable message bus, such as a Wolverine outbox message, keeps the `*Command` and `*CommandHandler` names, but the framework dictates its handler's shape: visibility, method name, discovery, and return type follow the framework rather than this section, and senders publish the Command instead of injecting the handler ([Wolverine](wolverine.md)). Name it for one unit of work, such as `DeliverLaboratoryOrderCommand`.
 
 Return types:
 

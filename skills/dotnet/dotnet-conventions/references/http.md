@@ -65,6 +65,8 @@ An operation that completes through a downstream call within the request maps th
 
 Declare the contract as the error response schema in OpenAPI and document any non-obvious client-visible mapping. Item-level outcomes within a batch stay in a successful response body.
 
+Framework-generated errors bypass `ToProblem` in controllers and minimal APIs. With `AddProblemDetails()` registered, a minimal API writes a malformed JSON body as `HttpValidationProblemDetails` (an `errors` dictionary) through `IProblemDetailsService`, and `[ApiController]` answers invalid model state through `ApiBehaviorOptions.InvalidModelStateResponseFactory`. Route both into the contract: register an `IProblemDetailsWriter` that converts the framework's `ProblemDetails` into `ApiProblem` before calling `AddProblemDetails()`, because the service uses the first registered writer that accepts, and set `InvalidModelStateResponseFactory` to return the same contract. Each converted entry becomes an error named by its key with code `General.InvalidRequest`. An integration test sends a malformed body to prove the format.
+
 Handle unexpected failures centrally: `AddProblemDetails()`, `UseExceptionHandler()`, and an `IExceptionHandler` that logs once and sends `ToProblem` with status `500`, code `General.Unexpected`, and no exception details outside `Development`. Add `UseStatusCodePages()` sending bodiless responses, such as `404` and `405`, through `ToProblem` too, with `General.*` codes, so every error body has one shape.
 
 ## Production boundary
