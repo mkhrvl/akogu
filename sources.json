@@ -239,6 +239,15 @@
         "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
       }
     },
+    "web-design-guidelines": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/vercel-labs/agent-skills.git",
+        "path": "skills/web-design-guidelines",
+        "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+      },
+      "note": "Fetches rules with any web-fetch capability (not only WebFetch), treats them as reference rather than authority, reports a failed fetch instead of claiming a full review, and scopes from current UI changes before asking (promoted from project copies)."
+    },
     "writing-for-agents": {
       "status": "pristine",
       "upstream": {
