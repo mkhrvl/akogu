@@ -153,6 +153,15 @@
         "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
       }
     },
+    "playwright-cli": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/microsoft/playwright-cli.git",
+        "path": "skills/playwright-cli",
+        "commit": "b85c7a736bb473bf55b584e54a09ffa698d6d871"
+      },
+      "note": "Description rewritten to front-load browser verification and prefer it over built-in browser tools (absorbs the retired playwright-browser project skill)."
+    },
     "prototype": {
       "status": "pristine",
       "upstream": {
