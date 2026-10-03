@@ -1,6 +1,7 @@
 ---
 name: codex
-description: Delegate work to OpenAI Codex (the `codex` CLI) as a sub-agent — code review and second opinions, implementation in an isolated git worktree, or codebase research/debugging — then verify and integrate its result. Use whenever the user mentions Codex ("ask codex", "have codex do/review/check", "get codex's take", "run it by codex", "codex as a subagent"). Also use proactively when an independent model's view adds real value: reviewing a non-trivial diff or plan before calling it done, breaking a debugging deadlock after two failed hypotheses, or cross-checking a risky design decision.
+description: >-
+  Delegate work to OpenAI Codex (the `codex` CLI) as a sub-agent — code review and second opinions, implementation in an isolated git worktree, or codebase research/debugging — then verify and integrate its result. Use whenever the user mentions Codex ("ask codex", "have codex do/review/check", "get codex's take", "run it by codex", "codex as a subagent"). Also use proactively when an independent model's view adds real value: reviewing a non-trivial diff or plan before calling it done, breaking a debugging deadlock after two failed hypotheses, or cross-checking a risky design decision.
 ---
 
 # Codex as a sub-agent
