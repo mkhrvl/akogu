@@ -27,6 +27,9 @@ dotnet-inspect.
 - Reuse the package, library, or platform scope reported by `find` with
   `type Type --package Foo` or `member Type Member:1 --package Foo`.
 - Select `-S Source` on one exact Type or Member for authored-first source.
+  When it reports `using decompiled fallback`, property initializers and
+  field defaults may be missing; confirm defaults and behavior with
+  `dnx ilspycmd -y -- -t <Namespace.Type> <dll>` before relying on them.
 - Add `--project path/to/project` for restored project dependencies.
 - Compare versions with `diff --package Foo@old..new --breaking`.
 - Use `-D` to discover sections, `-S` to select them, and `-Q` to discover
