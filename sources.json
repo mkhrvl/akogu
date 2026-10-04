@@ -68,6 +68,14 @@
     }
   },
   "skills/web": {
+    "interface-design": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/Dammyjay93/interface-design.git",
+        "path": ".claude/skills/interface-design",
+        "commit": "2f9be3206855bcb2d1d0af262c8bae25cba6658d"
+      }
+    },
     "playwright-cli": {
       "status": "modified",
       "upstream": {
