@@ -6,7 +6,7 @@ Organize application code by vertical slice: keep an operation's endpoint or han
 
 Name operation folders and types with verbs: `Create` for a new independently identifiable entity, `Update` for ordinary maintenance, a precise verb for a state transition (`Approve`, `Deactivate`), and `Add` only for a member or association. Integration and messaging slices name the flow and its direction instead: `Send` for a caller-initiated request passed on to another system, `Receive` for an inbound callback, `Deliver` for background fulfillment of persisted work. Keep each lifecycle transition its own slice even when one screen presents them together.
 
-Keep Commands, Queries, Results, and HTTP contracts with their owning operation. Collect nothing into generic `Application`, `Contracts`, `Services`, or `Helpers` roots; within a feature, group helpers by responsibility (`Reporting`, `ExpiryReminders`). A `Services` folder needs a precise membership rule beyond "classes that do work".
+Keep Commands, Queries, Results, and HTTP contracts with their owning operation. Collect nothing into generic `Application`, `Contracts`, `Services`, or `Helpers` roots; within a feature, group helpers by responsibility (`Reporting`, `ExpiryReminders`). A feature-local `Services/` folder holds injected collaborators that the endpoint or handler delegates part of its workflow to, where that part needs I/O or state, such as persistence, a cache, or a port. Its presence signals that the slice offloads substantial work. Pure helpers (mappers, builders, serializers) and error catalogs stay at the slice root, and ports go in `Ports/`.
 
 ## Slice files
 
