@@ -96,6 +96,15 @@
     }
   },
   "skills/productivity": {
+    "answer-me-with-html": {
+      "status": "modified",
+      "upstream": {
+        "repo": "https://github.com/QingYunA/answer-me-with-html.git",
+        "path": "skills/answer-me-with-html",
+        "commit": "e0df1c141fdfa265602f0a74cc4faa0838fad47e"
+      },
+      "note": "Description narrowed to explicit requests and diagrams that text cannot carry, replacing upstream's use-it-liberally trigger (promoted from project copies)."
+    },
     "grilling": {
       "status": "pristine",
       "upstream": {
