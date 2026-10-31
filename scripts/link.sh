@@ -11,6 +11,12 @@
 # claude/skills/*  -> $CLAUDE_SKILLS_DIR only
 set -euo pipefail
 
+# Git Bash's ln -s copies directories unless asked for native symlinks; a copy
+# would stop edits in akogu from reaching the agents.
+case "$(uname -s)" in
+  MINGW*|MSYS*|CYGWIN*) export MSYS="${MSYS:+$MSYS }winsymlinks:nativestrict" ;;
+esac
+
 AKOGU="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GLOBAL_ROOTS=()
 for dir in "$AKOGU"/skills/*/; do GLOBAL_ROOTS+=("${dir%/}"); done

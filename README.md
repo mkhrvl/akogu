@@ -28,6 +28,8 @@ git clone <this repo> ~/akogu
 
 Nothing is deleted. Displaced directories, stale links, and `~/.agents/.skill-lock.json` move to `~/.akogu-backup/<timestamp>/`. The lock file is removed because `npx skills update` would otherwise write through the links into this repository; akogu replaces that installer for the skills it vendors.
 
+On Windows, run the script from Git Bash. It requests native symlinks (`MSYS=winsymlinks:nativestrict`), which need Developer Mode or a user allowed to create symlinks; without them `ln` fails rather than silently copying.
+
 Override the targets with `AGENTS_SKILLS_DIR`, `CLAUDE_SKILLS_DIR`, and `BACKUP_DIR`.
 
 ## Skill sources
