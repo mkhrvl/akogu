@@ -110,7 +110,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/productivity/grilling",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "handoff": {
@@ -118,7 +118,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/productivity/handoff",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "writing-for-agents": {
@@ -126,7 +126,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/productivity/writing-for-agents",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     }
   },
@@ -136,7 +136,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/code-review",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       },
       "note": "Rewritten to be tracker- and stack-agnostic; promoted from project copies."
     },
@@ -145,7 +145,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/codebase-design",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "diagnosing-bugs": {
@@ -153,7 +153,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/diagnosing-bugs",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       },
       "note": "Rewritten to scale phases to the evidence; promoted from project copies. Upstream Redact section applied at the recorded commit."
     },
@@ -162,7 +162,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/domain-modeling",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "git-commit": {
@@ -179,7 +179,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/grill-with-docs",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "implement": {
@@ -187,7 +187,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/implement",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       },
       "note": "Delegates to testing and code-review; leaves changes uncommitted; promoted from project copies. Explicit invocation only."
     },
@@ -196,7 +196,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/implement-spec",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       },
       "note": "Implementers build tickets with testing instead of upstream tdd."
     },
@@ -205,7 +205,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/improve-codebase-architecture",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "pr": {
@@ -213,7 +213,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/pr",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "prototype": {
@@ -221,7 +221,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/prototype",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       },
       "note": "Kept because wayfinder calls it for Prototype tickets."
     },
@@ -230,7 +230,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/research",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "retro": {
@@ -238,7 +238,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/retro",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "second-opinion": {
@@ -250,7 +250,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/setup-matt-pocock-skills",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "testing": {
@@ -266,7 +266,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/to-spec",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "to-tickets": {
@@ -274,7 +274,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/to-tickets",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
     "wayfinder": {
@@ -282,7 +282,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/wayfinder",
-        "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     }
   },

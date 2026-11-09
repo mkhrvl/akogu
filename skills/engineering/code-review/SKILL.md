@@ -24,11 +24,11 @@ Quote refs and paths appropriately. If the repository has no HEAD, inspect the s
 
 Use the user's task and accepted decisions, an explicitly supplied specification, and relevant current product documentation. Discover the repository's issue tracker and requirement sources from its agent guidance; do not assume a particular tracker or directory. If requirements are absent, perform a correctness and standards review and report that requirement coverage could not be assessed.
 
-Use the repository's documented coding conventions and relevant current architectural decisions, locating them through its agent guidance or documentation index. Read surrounding code and affected consumers before reporting a defect. Distinguish observable bugs and documented-rule conflicts from design preferences. Formatting already enforced by tooling does not need a review finding.
+Use the repository's documented coding conventions and relevant current architectural decisions. Search the repository for every file that documents how code should be written, not only those its agent guidance or documentation index names; when `CODING_STANDARDS.md` or `CONTRIBUTING.md` exists, include it. Read surrounding code and affected consumers before reporting a defect. Distinguish observable bugs and documented-rule conflicts from design preferences. Formatting already enforced by tooling does not need a review finding.
 
 ## Review and report
 
-For a non-trivial change, use a bounded independent reviewer when it can catch meaningful defects alongside useful main-session work. Pass the exact comparison, relevant untracked paths, requirement sources, and standards. Keep requirements, decisions, and final approval in the main session. Small changes can be reviewed directly; the workflow must work without subagents.
+For a non-trivial change, use a bounded independent reviewer, started with a fresh context window, when it can catch meaningful defects alongside useful main-session work. Pass the exact comparison, relevant untracked paths, requirement sources, and standards. Keep requirements, decisions, and final approval in the main session. Small changes can be reviewed directly; the workflow must work without subagents.
 
 Check for missing or incorrect behavior, scope expansion, boundary failures, and regression risk. Treat duplication, naming, and abstraction concerns as contextual judgments; repository conventions take precedence over generic code-smell advice.
 
