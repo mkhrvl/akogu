@@ -174,13 +174,12 @@
       }
     },
     "git-commit": {
-      "status": "modified",
+      "status": "pristine",
       "upstream": {
         "repo": "https://github.com/github/awesome-copilot.git",
         "path": "skills/git-commit",
         "commit": "e45ee935ed0b57992ad7b4e07dbea5cb534786f0"
-      },
-      "note": "Description shortened."
+      }
     },
     "grill-with-docs": {
       "status": "pristine",
