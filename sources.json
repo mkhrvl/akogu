@@ -15,7 +15,7 @@
       "upstream": {
         "repo": "https://github.com/microsoft/aspire-skills.git",
         "path": "skills/aspire",
-        "commit": "1117facb04b403dd2fc15f048bc0e63fc67c502f"
+        "commit": "e529b608336cd41c1b1262aa76d00d9e4ef1bff8"
       }
     },
     "aspire-deployment": {
@@ -23,7 +23,7 @@
       "upstream": {
         "repo": "https://github.com/microsoft/aspire-skills.git",
         "path": "skills/aspire-deployment",
-        "commit": "1117facb04b403dd2fc15f048bc0e63fc67c502f"
+        "commit": "e529b608336cd41c1b1262aa76d00d9e4ef1bff8"
       }
     },
     "aspire-init": {
@@ -31,7 +31,7 @@
       "upstream": {
         "repo": "https://github.com/microsoft/aspire-skills.git",
         "path": "skills/aspire-init",
-        "commit": "1117facb04b403dd2fc15f048bc0e63fc67c502f"
+        "commit": "e529b608336cd41c1b1262aa76d00d9e4ef1bff8"
       }
     },
     "aspire-monitoring": {
@@ -39,7 +39,7 @@
       "upstream": {
         "repo": "https://github.com/microsoft/aspire-skills.git",
         "path": "skills/aspire-monitoring",
-        "commit": "1117facb04b403dd2fc15f048bc0e63fc67c502f"
+        "commit": "e529b608336cd41c1b1262aa76d00d9e4ef1bff8"
       }
     },
     "aspire-orchestration": {
@@ -47,7 +47,7 @@
       "upstream": {
         "repo": "https://github.com/microsoft/aspire-skills.git",
         "path": "skills/aspire-orchestration",
-        "commit": "1117facb04b403dd2fc15f048bc0e63fc67c502f"
+        "commit": "e529b608336cd41c1b1262aa76d00d9e4ef1bff8"
       }
     },
     "aspire-project-v2-migration": {
@@ -55,7 +55,7 @@
       "upstream": {
         "repo": "https://github.com/microsoft/aspire-skills.git",
         "path": "skills/aspire-project-v2-migration",
-        "commit": "1117facb04b403dd2fc15f048bc0e63fc67c502f"
+        "commit": "e529b608336cd41c1b1262aa76d00d9e4ef1bff8"
       }
     },
     "aspire-terminals": {
@@ -63,7 +63,7 @@
       "upstream": {
         "repo": "https://github.com/microsoft/aspire-skills.git",
         "path": "skills/aspire-terminals",
-        "commit": "1117facb04b403dd2fc15f048bc0e63fc67c502f"
+        "commit": "e529b608336cd41c1b1262aa76d00d9e4ef1bff8"
       }
     },
     "aspireify": {
@@ -71,7 +71,7 @@
       "upstream": {
         "repo": "https://github.com/microsoft/aspire-skills.git",
         "path": "skills/aspireify",
-        "commit": "1117facb04b403dd2fc15f048bc0e63fc67c502f"
+        "commit": "e529b608336cd41c1b1262aa76d00d9e4ef1bff8"
       }
     }
   },
@@ -97,7 +97,7 @@
       "upstream": {
         "repo": "https://github.com/microsoft/playwright-cli.git",
         "path": "skills/playwright-cli",
-        "commit": "261206400b18cd0629a8b45dd14ea5488fcf261f"
+        "commit": "99c4eb2566153f37fb104e5dbf894fb9c785e17d"
       },
       "note": "Description rewritten to front-load browser verification and prefer it over built-in browser tools (absorbs the retired playwright-browser project skill)."
     },
@@ -106,7 +106,7 @@
       "upstream": {
         "repo": "https://github.com/vercel-labs/agent-skills.git",
         "path": "skills/web-design-guidelines",
-        "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+        "commit": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62"
       },
       "note": "Fetches rules with any web-fetch capability (not only WebFetch), treats them as reference rather than authority, reports a failed fetch instead of claiming a full review, and scopes from current UI changes before asking (promoted from project copies)."
     }
@@ -117,7 +117,7 @@
       "upstream": {
         "repo": "https://github.com/QingYunA/answer-me-with-html.git",
         "path": "skills/answer-me-with-html",
-        "commit": "5bebfd3974b20b7a89e039cae0fba5e11d933678"
+        "commit": "912bad4cb7ccdb3729262bf885f5280b3da941ee"
       },
       "note": "Description narrowed to explicit requests and diagrams that text cannot carry, replacing upstream's use-it-liberally trigger (promoted from project copies)."
     },
@@ -126,7 +126,7 @@
       "upstream": {
         "repo": "https://github.com/jgraph/drawio-mcp.git",
         "path": "plugins/claude-code/skills/drawio",
-        "commit": "639186a5cdaea5a0d47215f5f404ac7b76ccf634"
+        "commit": "9bd19b362038593bc8611d426c92cd62dc222302"
       }
     },
     "grilling": {
@@ -134,7 +134,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/productivity/grilling",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "handoff": {
@@ -142,7 +142,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/productivity/handoff",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "second-opinion": {
@@ -154,7 +154,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/productivity/writing-for-agents",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     }
   },
@@ -164,7 +164,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/code-review",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       },
       "note": "Rewritten to be tracker- and stack-agnostic; promoted from project copies."
     },
@@ -173,7 +173,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/codebase-design",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "diagnosing-bugs": {
@@ -181,7 +181,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/diagnosing-bugs",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       },
       "note": "Rewritten to scale phases to the evidence; promoted from project copies. Upstream Redact section applied at the recorded commit."
     },
@@ -190,7 +190,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/domain-modeling",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "git-commit": {
@@ -198,7 +198,7 @@
       "upstream": {
         "repo": "https://github.com/github/awesome-copilot.git",
         "path": "skills/git-commit",
-        "commit": "e45ee935ed0b57992ad7b4e07dbea5cb534786f0"
+        "commit": "a255a193d1318e5a9ca3e9e575897f9a7845c099"
       }
     },
     "grill-with-docs": {
@@ -206,7 +206,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/grill-with-docs",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "implement": {
@@ -214,7 +214,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/implement",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       },
       "note": "Delegates to testing and code-review; leaves changes uncommitted; promoted from project copies. Explicit invocation only."
     },
@@ -223,7 +223,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/implement-spec",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       },
       "note": "Implementers build tickets with testing instead of upstream tdd."
     },
@@ -232,7 +232,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/improve-codebase-architecture",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "pr": {
@@ -240,7 +240,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/pr",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "prototype": {
@@ -248,7 +248,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/prototype",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       },
       "note": "Kept because wayfinder calls it for Prototype tickets."
     },
@@ -257,7 +257,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/research",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "retro": {
@@ -265,7 +265,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/retro",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "setup-matt-pocock-skills": {
@@ -273,7 +273,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/setup-matt-pocock-skills",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "testing": {
@@ -289,7 +289,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/to-spec",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "to-tickets": {
@@ -297,7 +297,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/to-tickets",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     },
     "wayfinder": {
@@ -305,7 +305,7 @@
       "upstream": {
         "repo": "https://github.com/mattpocock/skills.git",
         "path": "skills/engineering/wayfinder",
-        "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
       }
     }
   },
@@ -315,7 +315,7 @@
       "upstream": {
         "repo": "https://github.com/dotnet/skills.git",
         "path": "plugins/dotnet-diag/skills/analyzing-dotnet-performance",
-        "commit": "a55fbf42c36a37b94ec07291bd79cb6b6bf3a04d"
+        "commit": "2877c712edc20643b72f64e2983b168e6661d607"
       },
       "note": "Differs from the recorded commit; not checked whether local or upstream changed."
     },
@@ -328,7 +328,7 @@
       "upstream": {
         "repo": "https://github.com/richlander/dotnet-skills.git",
         "path": "skills/dotnet-inspect",
-        "commit": "a28c3971f13afd81d1eec8045b391c6345ac405a"
+        "commit": "08b85219aee7d1718a1b2f06f6ca8ac983f8e388"
       },
       "note": "Added a caveat to the Common starts source row: decompiled fallback (packages without PDBs, e.g. BlazorBlueprint.Components) drops property initializers, so confirm defaults and behavior with ilspycmd."
     }
