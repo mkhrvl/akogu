@@ -113,6 +113,14 @@
       },
       "note": "Description narrowed to explicit requests and diagrams that text cannot carry, replacing upstream's use-it-liberally trigger (promoted from project copies)."
     },
+    "drawio": {
+      "status": "pristine",
+      "upstream": {
+        "repo": "https://github.com/jgraph/drawio-mcp.git",
+        "path": "plugins/claude-code/skills/drawio",
+        "commit": "639186a5cdaea5a0d47215f5f404ac7b76ccf634"
+      }
+    },
     "grilling": {
       "status": "pristine",
       "upstream": {
