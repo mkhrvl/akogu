@@ -145,6 +145,10 @@
         "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
     },
+    "second-opinion": {
+      "status": "local",
+      "note": "Output path follows repo guidance; replies with the path. Explicit invocation only."
+    },
     "writing-for-agents": {
       "status": "pristine",
       "upstream": {
@@ -263,10 +267,6 @@
         "path": "skills/engineering/retro",
         "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
       }
-    },
-    "second-opinion": {
-      "status": "local",
-      "note": "Output path follows repo guidance; replies with the path. Explicit invocation only."
     },
     "setup-matt-pocock-skills": {
       "status": "pristine",
