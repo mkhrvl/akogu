@@ -147,7 +147,7 @@
     },
     "second-opinion": {
       "status": "local",
-      "note": "Output path follows repo guidance; replies with the path. Explicit invocation only."
+      "note": "Self-contained, unanchored brief (steelmanned options, pasted evidence, verbatim questions, redaction); output path follows repo guidance and the reply gives the path. Explicit invocation only."
     },
     "writing-for-agents": {
       "status": "pristine",
